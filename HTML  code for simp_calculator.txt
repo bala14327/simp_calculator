@@ -1,88 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Calculator</title>
-	<style>
-		#calculator {
-			margin: auto;
-			width: 300px;
-			padding: 10px;
-			border: 1px solid black;
-			border-radius: 5px;
-			background-color: #f1f1f1;
-		}
-		input[type="button"] {
-			width: 50px;
-			height: 50px;
-			font-size: 20px;
-			margin: 5px;
-			border-radius: 5px;
-			background-color: #e0e0e0;
-			border: 1px solid #c0c0c0;
-		}
-		input[type="text"] {
-			width: 100%;
-			height: 50px;
-			font-size: 30px;
-			margin-bottom: 10px;
-			border-radius: 5px;
-			border: none;
-			text-align: right;
-			padding: 5px;
-		}
-	</style>
-</head>
-<body>
-	<div id="calculator">
-		<input type="text" id="display" readonly>
-		<input type="button" value="1" onclick="addNumber('1')">
-		<input type="button" value="2" onclick="addNumber('2')">
-		<input type="button" value="3" onclick="addNumber('3')">
-		<input type="button" value="+" onclick="addOperator('+')"><br>
-		<input type="button" value="4" onclick="addNumber('4')">
-		<input type="button" value="5" onclick="addNumber('5')">
-		<input type="button" value="6" onclick="addNumber('6')">
-		<input type="button" value="-" onclick="addOperator('-')"><br>
-		<input type="button" value="7" onclick="addNumber('7')">
-		<input type="button" value="8" onclick="addNumber('8')">
-		<input type="button" value="9" onclick="addNumber('9')">
-		<input type="button" value="*" onclick="addOperator('*')"><br>
-		<input type="button" value="C" onclick="clearDisplay()">
-		<input type="button" value="0" onclick="addNumber('0')">
-		<input type="button" value="/" onclick="addOperator('/')">
-		<input type="button" value="=" onclick="calculate()">
-	</div>
-	<script>
-		var operator = '';
-		var operand1 = '';
-		var operand2 = '';
-		var result = '';
-		function addNumber(number) {
-			document.getElementById('display').value += number;
-			if (operator === '') {
-				operand1 += number;
-			} else {
-				operand2 += number;
-			}
-		}
-		function addOperator(op) {
-			operator = op;
-			document.getElementById('display').value += op;
-		}
-		function clearDisplay() {
-			document.getElementById('display').value = '';
-			operator = '';
-			operand1 = '';
-			operand2 = '';
-			result = '';
-		}
-		function calculate() {
-			switch(operator) {
-				case '+':
-					result = parseFloat(operand1) + parseFloat(operand2);
-					break;
-				case '-':
-					result = parseFloat(operand1) - parseFloat(operand2);
-					break;
-				case '*':
-					result = parseFloat(operand1) * parseFloat(operand2
+  <head>
+    <title>Calculator</title>
+  </head>
+  <body>
+    <form>
+      <input type="text" id="result" readonly>
+      <br>
+      <input type="button" value="1" onclick="document.getElementById('result').value+='1'">
+      <input type="button" value="2" onclick="document.getElementById('result').value+='2'">
+      <input type="button" value="3" onclick="document.getElementById('result').value+='3'">
+      <input type="button" value="+" onclick="document.getElementById('result').value+='+'">
+      <br>
+      <input type="button" value="4" onclick="document.getElementById('result').value+='4'">
+      <input type="button" value="5" onclick="document.getElementById('result').value+='5'">
+      <input type="button" value="6" onclick="document.getElementById('result').value+='6'">
+      <input type="button" value="-" onclick="document.getElementById('result').value+='-'">
+      <br>
+      <input type="button" value="7" onclick="document.getElementById('result').value+='7'">
+      <input type="button" value="8" onclick="document.getElementById('result').value+='8'">
+      <input type="button" value="9" onclick="document.getElementById('result').value+='9'">
+      <input type="button" value="*" onclick="document.getElementById('result').value+='*'">
+      <br>
+      <input type="button" value="0" onclick="document.getElementById('result').value+='0'">
+      <input type="button" value="." onclick="document.getElementById('result').value+='.'">
+      <input type="button" value="C" onclick="document.getElementById('result').value=''">
+      <input type="button" value="/" onclick="document.getElementById('result').value+='/'">
+      <br>
+      <input type="button" value="=" onclick="document.getElementById('result').value=eval(document.getElementById('result').value)">
+    </form>
+  </body>
+</html>
