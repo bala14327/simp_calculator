@@ -1,16 +1,5 @@
-Thanks for the detailed project overview! Based on your responsibilities, you’re focusing on advertisement history retrieval and display, and optionally deletion. You’ll be working on both:
+ Service Layer (Angular - ad-history.service.ts)
 
-Service Layer: Interacting with backend APIs.
-
-UI Layer (Angular): Creating components to show ad history with sorting/filtering features.
-
-Here’s a complete plan with code snippets to help you finish your part of the project.
-
-✅ 1. Service Layer (Angular - ad-history.service.ts)
-ts
-Copy
-Edit
-// src/app/services/ad-history.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -39,26 +28,10 @@ export class AdHistoryService {
     return this.http.delete(`${this.baseUrl}/${historyId}`);
   }
 }
-✅ 2. Angular Components Structure
-bash
-Copy
-Edit
-ad-history/
-│
-├── ad-history-card/
-│   └── ad-history-card.component.ts/html/css
-│
-├── ad-history-list/
-│   └── ad-history-list.component.ts/html/css
-│
-└── ad-history.module.ts
-✅ 3. AdHistoryCardComponent
+ AdHistoryCardComponent
 Shows individual history entries.
 
-ad-history-card.component.ts
-ts
-Copy
-Edit
+
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AdHistory } from 'src/app/services/ad-history.service';
 
@@ -75,10 +48,9 @@ export class AdHistoryCardComponent {
     this.delete.emit(this.history.id);
   }
 }
+
 ad-history-card.component.html
-html
-Copy
-Edit
+
 <div class="card">
   <div class="card-body">
     <h5>{{ history.prompt }}</h5>
@@ -88,13 +60,12 @@ Edit
     <button (click)="onDelete()">Delete</button>
   </div>
 </div>
-✅ 4. AdHistoryListComponent
+
+AdHistoryListComponent
 Displays list of all history cards, handles filtering/sorting.
 
 ad-history-list.component.ts
-ts
-Copy
-Edit
+
 import { Component, OnInit } from '@angular/core';
 import { AdHistory, AdHistoryService } from 'src/app/services/ad-history.service';
 
@@ -133,10 +104,10 @@ export class AdHistoryListComponent implements OnInit {
     });
   }
 }
+
 ad-history-list.component.html
-html
-Copy
-Edit
+
+
 <div>
   <label>Filter by Type:</label>
   <select [(ngModel)]="filterType" (change)="applyFilter()">
@@ -153,13 +124,11 @@ Edit
     (delete)="onDelete($event)">
   </app-ad-history-card>
 </div>
-✅ 5. Module Declaration
-Make sure both components are declared and imported properly.
+
+
 
 ad-history.module.ts
-ts
-Copy
-Edit
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -172,40 +141,5 @@ import { AdHistoryListComponent } from './ad-history-list/ad-history-list.compon
   exports: [AdHistoryListComponent]
 })
 export class AdHistoryModule {}
-✅ 6. Integration into Home Page
-In your home page HTML (where the left panel exists), place the component:
-
-html
-Copy
-Edit
-<!-- home.component.html -->
-<app-ad-history-list></app-ad-history-list>
-🚀 Backend API Format (for your backend team)
-1. GET /api/ad-history/user/:userId
-Returns:
-
-json
-Copy
-Edit
-[
-  {
-    "id": "1",
-    "prompt": "Generate ad for sunglasses",
-    "date": "2025-05-07T14:30:00Z",
-    "adPreview": "🔥 Summer sunglasses - 50% OFF 🔥",
-    "type": "text"
-  },
-  ...
-]
-2. DELETE /api/ad-history/:historyId
-Deletes the history item with specified ID.
-
-Would you also like mock data or unit tests for your components to get started even faster?
-
-
-
-
-
-
 
 
